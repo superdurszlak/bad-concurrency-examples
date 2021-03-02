@@ -9,8 +9,8 @@ fun unsafeConcurrentMultiplication(
     rightMatrix: Matrix,
     resultMatrixFactory: MatrixFactory,
     taskExecutor: TaskExecutor,
-    rowBlockSize: Int,
     columnBlockSize: Int,
+    rowBlockSize: Int,
     dotProductBlockSize: Int
 ): Matrix {
     val resultMatrix = resultMatrixFactory.create(leftMatrix.rows, rightMatrix.columns)

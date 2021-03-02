@@ -25,7 +25,7 @@ test {
 jmh {
     iterations = 10
     threads = 1
-    timeOnIteration = '25s'
+    timeOnIteration = '1s'
     batchSize = 1
     operationsPerInvocation = 1
     benchmarkMode = ['thrpt'] // Benchmark mode. Available modes are: [Throughput/thrpt, AverageTime/avgt, SampleTime/sample, SingleShotTime/ss, All/all]
@@ -36,7 +36,7 @@ jmh {
     resultFormat = 'JSON' // Result format type (one of CSV, JSON, NONE, SCSV, TEXT)
     warmupIterations = 1
     warmupBatchSize = 1
-    warmup = '50s'
+    warmup = '20s'
     warmupForks = 1
     jmhVersion = '1.28'
 }

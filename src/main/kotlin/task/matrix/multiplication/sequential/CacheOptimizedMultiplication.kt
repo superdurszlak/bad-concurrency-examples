@@ -7,17 +7,19 @@ fun cacheOptimizedMultiplication(
     leftMatrix: Matrix,
     rightMatrix: Matrix,
     resultMatrixFactory: MatrixFactory,
-    blockSize: Int
+    columnBlockSize: Int,
+    rowBlockSize: Int,
+    dotProductBlockSize: Int
 ): Matrix {
     val resultMatrix = resultMatrixFactory.create(leftMatrix.rows, rightMatrix.columns)
 
-    val dotProductChunks = (0 until leftMatrix.columns).chunked(blockSize)
-    val chunkedColumnChunks = (0 until leftMatrix.rows).chunked(blockSize)
-    val chunkedRowChunks = (0 until rightMatrix.columns).chunked(blockSize)
+    val columnChunks = (0 until leftMatrix.rows).chunked(columnBlockSize)
+    val rowChunks = (0 until rightMatrix.columns).chunked(rowBlockSize)
+    val dotProductChunks = (0 until leftMatrix.columns).chunked(dotProductBlockSize)
 
 
-    chunkedColumnChunks.forEach { columnChunk ->
-        chunkedRowChunks.forEach { rowChunk ->
+    columnChunks.forEach { columnChunk ->
+        rowChunks.forEach { rowChunk ->
             dotProductChunks.forEach { dotProductChunk ->
                 partialMultiplication(leftMatrix, rightMatrix, resultMatrix, rowChunk, columnChunk, dotProductChunk)
             }

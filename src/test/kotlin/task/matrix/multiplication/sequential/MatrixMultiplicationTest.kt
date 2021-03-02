@@ -49,7 +49,14 @@ internal class MatrixMultiplicationTest {
         delta: Double,
         resultMatrixFactory: MatrixFactory
     ) {
-        val resultMatrix = cacheOptimizedMultiplication(leftMatrix, rightMatrix, resultMatrixFactory, 16)
+        val resultMatrix = cacheOptimizedMultiplication(
+            leftMatrix,
+            rightMatrix,
+            resultMatrixFactory,
+            16,
+            16,
+            16
+        )
 
         assertMatricesEquivalent(expectedResultMatrix, resultMatrix, delta)
     }
@@ -91,7 +98,14 @@ internal class MatrixMultiplicationTest {
         val leftMatrixCopy = leftMatrix.copy(leftMatrixFactory)
         val rightMatrixCopy = rightMatrix.copy(rightMatrixFactory)
 
-        val resultMatrix = cacheOptimizedMultiplication(leftMatrixCopy, rightMatrixCopy, MatrixFactory.UNSAFE_ROW_MAJOR, 16)
+        val resultMatrix = cacheOptimizedMultiplication(
+            leftMatrixCopy,
+            rightMatrixCopy,
+            MatrixFactory.UNSAFE_ROW_MAJOR,
+            16,
+            16,
+            16
+        )
 
         assertMatricesEquivalent(expectedResultMatrix, resultMatrix, delta)
     }
@@ -110,7 +124,14 @@ internal class MatrixMultiplicationTest {
         initializeRandomly(bigRightMatrix, Random)
 
         val naiveResultMatrix = naiveMultiplication(bigLeftMatrix, bigRightMatrix, resultMatrixFactory)
-        val optimizedResultMatrix = cacheOptimizedMultiplication(bigLeftMatrix, bigRightMatrix, resultMatrixFactory, 16)
+        val optimizedResultMatrix = cacheOptimizedMultiplication(
+            bigLeftMatrix,
+            bigRightMatrix,
+            resultMatrixFactory,
+            16,
+            16,
+            16
+        )
 
         assertMatricesEquivalent(naiveResultMatrix, optimizedResultMatrix, delta)
     }
