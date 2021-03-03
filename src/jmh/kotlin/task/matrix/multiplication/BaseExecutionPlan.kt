@@ -8,15 +8,17 @@ import kotlin.random.Random
 
 
 open class BaseExecutionPlan(
-    open var size: Int = 100,
+    open var size: Int = 200,
+    open var columnBlockSize: Int = 200,
+    open var rowBlockSize: Int = 200,
+    open var dotProductBlockSize: Int = 200,
+    open var threadCount: Int = 1,
     open var leftMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
     open var rightMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
     open var resultMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
     open var taskExecutorFactory: TaskExecutorFactory = TaskExecutorFactory.THREAD_POOL_EXECUTOR,
-    open var columnBlockSize: Int = 1000,
-    open var rowBlockSize: Int = 1000,
-    open var dotProductBlockSize: Int = 1000,
-    open var threadCount: Int = 1000,
+    open var multiplicationAlgorithm: MultiplicationAlgorithm = MultiplicationAlgorithm.SEQUENTIAL_NAIVE,
+    open var benchmarkContext: String = ""
 ) {
     lateinit var leftMatrix: Matrix
     lateinit var rightMatrix: Matrix

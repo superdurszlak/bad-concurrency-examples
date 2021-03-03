@@ -7,53 +7,12 @@ import task.matrix.multiplication.sequential.cacheOptimizedMultiplication
 import task.matrix.multiplication.sequential.naiveMultiplication
 
 open class BaseMatrixMultiplicationScenario {
-    protected fun execNaiveSequentialMultiplication(executionPlan: BaseExecutionPlan, blackhole: Blackhole) {
-        val result = naiveMultiplication(
-            executionPlan.leftMatrix,
-            executionPlan.rightMatrix,
-            executionPlan.resultMatrixFactory
-        )
-        blackhole.consume(result)
-    }
 
-    protected fun execCacheOptimizedSequentialMultiplication(executionPlan: BaseExecutionPlan, blackhole: Blackhole) {
-        val result = cacheOptimizedMultiplication(
-            executionPlan.leftMatrix,
-            executionPlan.rightMatrix,
-            executionPlan.resultMatrixFactory,
-            executionPlan.columnBlockSize,
-            executionPlan.rowBlockSize,
-            executionPlan.dotProductBlockSize
-        )
-        blackhole.consume(result)
-    }
+    protected fun executeBenchmark(baseExecutionPlan: BaseExecutionPlan, blackhole: Blackhole) {
+        val algorithm = baseExecutionPlan.multiplicationAlgorithm
 
-    protected fun execSafeConcurrentMultiplication(executionPlan: BaseExecutionPlan, blackhole: Blackhole) {
-        val result = safeConcurrentMultiplication(
-            executionPlan.leftMatrix,
-            executionPlan.rightMatrix,
-            executionPlan.resultMatrixFactory,
-            executionPlan.taskExecutorFactory.create(
-                executionPlan.threadCount
-            ),
-            executionPlan.columnBlockSize,
-            executionPlan.rowBlockSize
-        )
-        blackhole.consume(result)
-    }
+        val result = algorithm(baseExecutionPlan)
 
-    protected fun execUnsafeConcurrentMultiplication(executionPlan: BaseExecutionPlan, blackhole: Blackhole) {
-        val result = unsafeConcurrentMultiplication(
-            executionPlan.leftMatrix,
-            executionPlan.rightMatrix,
-            executionPlan.resultMatrixFactory,
-            executionPlan.taskExecutorFactory.create(
-                executionPlan.threadCount
-            ),
-            executionPlan.columnBlockSize,
-            executionPlan.rowBlockSize,
-            executionPlan.dotProductBlockSize
-        )
         blackhole.consume(result)
     }
 }
