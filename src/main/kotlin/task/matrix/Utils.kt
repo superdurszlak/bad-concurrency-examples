@@ -1,5 +1,6 @@
 package task.matrix
 
+import task.executor.TaskExecutor
 import kotlin.random.Random
 
 fun initializeRandomly(matrix: Matrix, randomGenerator: Random): Matrix {
@@ -40,10 +41,38 @@ fun partialDotProduct(
 
 fun Matrix.copy(matrixFactory: MatrixFactory): Matrix {
     val newMatrix = matrixFactory.create(rows, columns)
-    (0 until rows).forEach { row ->
-        (0 until columns).forEach { column ->
+
+    partialCopy(newMatrix, (0 until rows), (0 until columns))
+
+    return newMatrix
+}
+
+fun Matrix.copyConcurrently(
+    matrixFactory: MatrixFactory,
+    rowBlockSize: Int,
+    columnBlockSize: Int,
+    taskExecutor: TaskExecutor
+): Matrix {
+    val newMatrix = matrixFactory.create(rows, columns)
+
+    val columnChunks = (0 until columns).chunked(columnBlockSize)
+    val rowChunks = (0 until rows).chunked(rowBlockSize)
+
+    val tasks = rowChunks.map { columnChunk ->
+        columnChunks.map { rowChunk ->
+            { partialCopy(newMatrix, rowChunk, columnChunk) }
+        }
+    }.flatten()
+
+    taskExecutor.execute(tasks)
+
+    return newMatrix
+}
+
+private fun Matrix.partialCopy(newMatrix: Matrix, rowChunk: Iterable<Int>, columnChunk: Iterable<Int>) {
+    rowChunk.forEach { row ->
+        columnChunk.forEach { column ->
             newMatrix[row, column] = this[row, column]
         }
     }
-    return newMatrix
 }

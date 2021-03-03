@@ -1,4 +1,4 @@
-package task.matrix.multiplication.concurrent.executor
+package task.executor
 
 import task.matrix.multiplication.divideAndRoundUp
 import kotlin.concurrent.thread

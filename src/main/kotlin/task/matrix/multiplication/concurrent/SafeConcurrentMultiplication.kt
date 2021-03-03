@@ -2,7 +2,7 @@ package task.matrix.multiplication.concurrent
 
 import task.matrix.Matrix
 import task.matrix.MatrixFactory
-import task.matrix.multiplication.concurrent.executor.TaskExecutor
+import task.executor.TaskExecutor
 
 fun safeConcurrentMultiplication(
     leftMatrix: Matrix,

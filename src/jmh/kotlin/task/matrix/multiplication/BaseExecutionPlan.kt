@@ -3,7 +3,7 @@ package task.matrix.multiplication
 import task.matrix.Matrix
 import task.matrix.MatrixFactory
 import task.matrix.initializeRandomly
-import task.matrix.multiplication.concurrent.executor.TaskExecutorFactory
+import task.executor.TaskExecutorFactory
 import kotlin.random.Random
 
 

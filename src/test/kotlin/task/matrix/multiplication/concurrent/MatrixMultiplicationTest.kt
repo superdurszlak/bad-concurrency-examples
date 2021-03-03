@@ -9,7 +9,7 @@ import org.junitpioneer.jupiter.CartesianValueSource.CartesianValueSources
 import task.matrix.MatrixFactory
 import task.matrix.assertMatricesEquivalent
 import task.matrix.initializeRandomly
-import task.matrix.multiplication.concurrent.executor.TaskExecutorFactory
+import task.executor.TaskExecutorFactory
 import task.matrix.multiplication.sequential.naiveMultiplication
 import kotlin.random.Random
 

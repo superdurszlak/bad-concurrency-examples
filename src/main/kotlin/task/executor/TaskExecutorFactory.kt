@@ -1,4 +1,4 @@
-package task.matrix.multiplication.concurrent.executor
+package task.executor
 
 enum class TaskExecutorFactory(
     val create: (threads: Int) -> TaskExecutor

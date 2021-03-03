@@ -1,4 +1,4 @@
-package task.matrix.multiplication.concurrent.executor
+package task.executor
 
 interface TaskExecutor {
     fun execute(tasks: Collection<() -> Unit>)

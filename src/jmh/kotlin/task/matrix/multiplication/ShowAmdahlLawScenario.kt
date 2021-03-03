@@ -3,7 +3,7 @@ package task.matrix.multiplication
 import org.openjdk.jmh.annotations.*
 import org.openjdk.jmh.infra.Blackhole
 import task.matrix.MatrixFactory
-import task.matrix.multiplication.concurrent.executor.TaskExecutorFactory
+import task.executor.TaskExecutorFactory
 
 open class ShowAmdahlLawScenario: BaseMatrixMultiplicationScenario() {
     @State(Scope.Benchmark)

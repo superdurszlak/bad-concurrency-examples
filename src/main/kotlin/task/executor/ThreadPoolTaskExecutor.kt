@@ -1,4 +1,4 @@
-package task.matrix.multiplication.concurrent.executor
+package task.executor
 
 import java.util.concurrent.*
 
