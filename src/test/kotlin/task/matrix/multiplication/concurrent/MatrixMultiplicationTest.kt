@@ -34,8 +34,8 @@ class MatrixMultiplicationTest {
         resultMatrixFactory: MatrixFactory,
         taskExecutorFactory: TaskExecutorFactory
     ) {
-        val leftMatrix = MatrixFactory.UNSAFE_ROW_MAJOR.create(10, 10000)
-        val rightMatrix = MatrixFactory.UNSAFE_ROW_MAJOR.create(10000, 10)
+        val leftMatrix = MatrixFactory.UNSAFE_ROW_MAJOR.create(100, 10000)
+        val rightMatrix = MatrixFactory.UNSAFE_ROW_MAJOR.create(10000, 100)
 
         initializeRandomly(leftMatrix, Random.Default)
         initializeRandomly(rightMatrix, Random.Default)
@@ -70,7 +70,7 @@ class MatrixMultiplicationTest {
         resultMatrixFactory: MatrixFactory,
         taskExecutorFactory: TaskExecutorFactory
     ) {
-        val leftMatrix = MatrixFactory.UNSAFE_ROW_MAJOR.create(10, 10000)
+        val leftMatrix = MatrixFactory.UNSAFE_ROW_MAJOR.create(100, 10000)
         val rightMatrix = MatrixFactory.UNSAFE_ROW_MAJOR.create(10000, 10)
 
         initializeRandomly(leftMatrix, Random.Default)

@@ -2,6 +2,11 @@ package task.matrix.rowmajor
 
 import task.matrix.Matrix
 
+/*
+ NOTE: This matrix implementation is NOT thread safe. It only introduces deliberate synchronization on its methods.
+
+ Certain operations on its elements eg. += may (and will) still lead to a race condition and yield erroneous results in some circumstances.
+ */
 class SynchronizedRowMajorMatrix(
     rows: Int,
     columns: Int

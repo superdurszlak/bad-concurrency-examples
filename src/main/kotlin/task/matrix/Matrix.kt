@@ -2,8 +2,8 @@ package task.matrix
 
 abstract class Matrix(
     val rows: Int,
-    val columns: Int)
-{
+    val columns: Int
+) {
     init {
         require(rows > 0) { "Matrix row count must be greater than 0" }
         require(columns > 0) { "Matrix column count must be greater than 0" }

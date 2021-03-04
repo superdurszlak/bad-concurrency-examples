@@ -20,7 +20,7 @@ fun divideIntoSubtasks(
         chunkedRowRange.map { rowChunk ->
             chunkedDotProductRange.map { dotProductChunk ->
                 {
-                    partialMultiplication(leftMatrix, rightMatrix, resultMatrix, columnChunk, rowChunk, dotProductChunk)
+                    partialMultiplication(leftMatrix, rightMatrix, resultMatrix, rowChunk, columnChunk, dotProductChunk)
                 }
             }
         }

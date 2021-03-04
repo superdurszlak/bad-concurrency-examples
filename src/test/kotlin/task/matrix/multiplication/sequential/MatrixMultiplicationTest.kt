@@ -117,7 +117,7 @@ internal class MatrixMultiplicationTest {
         delta: Double,
         resultMatrixFactory: MatrixFactory
     ) {
-        val bigLeftMatrix = UnsafeRowMajorMatrix(10, 10000)
+        val bigLeftMatrix = UnsafeRowMajorMatrix(100, 10000)
         val bigRightMatrix = UnsafeRowMajorMatrix(10000, 10)
 
         initializeRandomly(bigLeftMatrix, Random)

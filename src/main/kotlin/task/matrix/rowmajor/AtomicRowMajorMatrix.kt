@@ -3,6 +3,11 @@ package task.matrix.rowmajor
 import task.matrix.Matrix
 import java.util.concurrent.atomic.AtomicReference
 
+/*
+ NOTE: This matrix implementation is NOT thread safe. It only introduces deliberate synchronization on its elements.
+
+ Certain operations on its elements eg. += may (and will) still lead to a race condition and yield erroneous results in some circumstances.
+ */
 class AtomicRowMajorMatrix(
     rows: Int,
     columns: Int
