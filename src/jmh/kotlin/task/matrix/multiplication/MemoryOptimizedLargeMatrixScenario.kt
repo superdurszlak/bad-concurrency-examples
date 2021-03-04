@@ -26,7 +26,7 @@ open class MemoryOptimizedLargeMatrixScenario: BaseMatrixMultiplicationScenario(
         override var resultMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
         @Param("THREAD_POOL_EXECUTOR")
         override var taskExecutorFactory: TaskExecutorFactory = TaskExecutorFactory.THREAD_POOL_EXECUTOR,
-        @Param("SEQUENTIAL_CACHE_OPTIMIZED", "SEQUENTIAL_NAIVE", "CONCURRENT_SAFE")
+        @Param("SEQUENTIAL_CACHE_OPTIMIZED")
         override var multiplicationAlgorithm: MultiplicationAlgorithm = MultiplicationAlgorithm.SEQUENTIAL_NAIVE,
         @Param("optimizing for cache may boost execution significantly")
         override var benchmarkContext: String = ""

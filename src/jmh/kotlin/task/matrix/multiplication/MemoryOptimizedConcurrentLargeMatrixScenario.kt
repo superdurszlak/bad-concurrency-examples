@@ -5,32 +5,33 @@ import org.openjdk.jmh.infra.Blackhole
 import task.matrix.MatrixFactory
 import task.executor.TaskExecutorFactory
 
-open class ShowAmdahlLawScenario: BaseMatrixMultiplicationScenario() {
+open class MemoryOptimizedConcurrentLargeMatrixScenario: BaseMatrixMultiplicationScenario() {
     @State(Scope.Benchmark)
     open class ExecutionPlan(
-        @Param("200")
-        override var size: Int = 200,
-        @Param("20")
-        override var columnBlockSize: Int = 20,
-        @Param("1")
-        override var rowBlockSize: Int = 1,
-        @Param("200")
-        override var dotProductBlockSize: Int = 100,
-        @Param("1", "2", "3", "4", "8", "64", "512")
-        override var threadCount: Int = 1,
+        @Param("2000")
+        override var size: Int = 2000,
+        @Param("16")
+        override var columnBlockSize: Int = 16,
+        @Param("16")
+        override var rowBlockSize: Int = 16,
+        @Param("16")
+        override var dotProductBlockSize: Int = 16,
+        @Param("4")
+        override var threadCount: Int = 4,
         @Param("UNSAFE_ROW_MAJOR")
         override var leftMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
         @Param("UNSAFE_ROW_MAJOR")
         override var rightMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
-        @Param("UNSAFE_ROW_MAJOR")
-        override var resultMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
+        @Param("ATOMIC_ROW_MAJOR")
+        override var resultMatrixFactory: MatrixFactory = MatrixFactory.ATOMIC_ROW_MAJOR,
         @Param("THREAD_POOL_EXECUTOR")
         override var taskExecutorFactory: TaskExecutorFactory = TaskExecutorFactory.THREAD_POOL_EXECUTOR,
-        @Param("CONCURRENT_SAFE")
-        override var multiplicationAlgorithm: MultiplicationAlgorithm = MultiplicationAlgorithm.CONCURRENT_SAFE,
-        @Param("using more threads does not always mean faster execution")
+        @Param("CONCURRENT_UNSAFE")
+        override var multiplicationAlgorithm: MultiplicationAlgorithm = MultiplicationAlgorithm.CONCURRENT_UNSAFE,
+        @Param("optimizing for cache may boost execution significantly")
         override var benchmarkContext: String = ""
-    ) : BaseExecutionPlan() {
+    ) : BaseExecutionPlan(
+    ) {
         @Setup(Level.Iteration)
         fun setUp() {
             setUpIteration()

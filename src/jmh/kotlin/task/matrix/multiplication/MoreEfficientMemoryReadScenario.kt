@@ -20,7 +20,7 @@ open class MoreEfficientMemoryReadScenario: BaseMatrixMultiplicationScenario() {
         override var threadCount: Int = 1,
         @Param("UNSAFE_ROW_MAJOR")
         override var leftMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
-        @Param("UNSAFE_COLUMN_MAJOR", "UNSAFE_ROW_MAJOR")
+        @Param("UNSAFE_COLUMN_MAJOR")
         override var rightMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
         @Param("UNSAFE_ROW_MAJOR")
         override var resultMatrixFactory: MatrixFactory = MatrixFactory.UNSAFE_ROW_MAJOR,
