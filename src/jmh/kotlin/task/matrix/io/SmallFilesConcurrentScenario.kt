@@ -20,7 +20,7 @@ open class SmallFilesConcurrentScenario: BaseFileWriteScenario() {
         override var fileWriteAlgorithm: FileWriteAlgorithm = FileWriteAlgorithm.UNSAFE_SERIAL_CONCURRENT_WRITE,
         @Param("THREAD_POOL_EXECUTOR")
         override var taskExecutorFactory: TaskExecutorFactory = TaskExecutorFactory.THREAD_POOL_EXECUTOR,
-        @Param("copying many 10KiB files, files not shared")
+        @Param("writing many 10KiB files, files not shared")
         override var benchmarkContext: String = ""
     ): BaseExecutionPlan(directoryPrefix = "small-files-concurrent") {
 

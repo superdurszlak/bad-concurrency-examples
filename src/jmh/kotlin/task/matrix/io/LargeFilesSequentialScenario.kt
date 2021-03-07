@@ -20,7 +20,7 @@ open class LargeFilesSequentialScenario: BaseFileWriteScenario() {
         override var fileWriteAlgorithm: FileWriteAlgorithm = FileWriteAlgorithm.SERIAL_SEQUENTIAL_WRITE,
         @Param("THREAD_POOL_EXECUTOR")
         override var taskExecutorFactory: TaskExecutorFactory = TaskExecutorFactory.THREAD_POOL_EXECUTOR,
-        @Param("scenario with fewer 1MiB files, files can be shared")
+        @Param("writing some 1MiB files, files can be shared")
         override var benchmarkContext: String = ""
     ): BaseExecutionPlan(directoryPrefix = "large-files") {
 
