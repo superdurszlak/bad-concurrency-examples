@@ -12,13 +12,13 @@ enum class FileWriteAlgorithm(
 }
 
 private fun serialWriteSequentially(executionPlan: BaseExecutionPlan) {
-    writeSequentially(executionPlan, ::iterateTasksSerial, ::writeRandomString)
+    writeSequentially(executionPlan, ::iterateTasksSerial, ::writeStringTo)
 }
 
 private fun safeParallelWriteConcurrently(executionPlan: BaseExecutionPlan) {
     writeConcurrently(executionPlan, ::iterateTasksParallel) { file, charactersToWrite ->
         synchronized(file) {
-            writeRandomString(file, charactersToWrite)
+            writeStringTo(file, charactersToWrite)
         }
     }
 }
@@ -26,12 +26,12 @@ private fun safeParallelWriteConcurrently(executionPlan: BaseExecutionPlan) {
 private fun safeSerialWriteConcurrently(executionPlan: BaseExecutionPlan) {
     writeConcurrently(executionPlan, ::iterateTasksSerial) { file, charactersToWrite ->
         synchronized(file) {
-            writeRandomString(file, charactersToWrite)
+            writeStringTo(file, charactersToWrite)
         }
     }
 }
 
 private fun unsafeSerialWriteConcurrently(executionPlan: BaseExecutionPlan) {
-    writeConcurrently(executionPlan, ::iterateTasksSerial, ::writeRandomString)
+    writeConcurrently(executionPlan, ::iterateTasksSerial, ::writeStringTo)
 }
 

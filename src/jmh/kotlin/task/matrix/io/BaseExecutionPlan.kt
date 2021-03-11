@@ -22,8 +22,11 @@ open class BaseExecutionPlan(
 
     lateinit var tempDir: Path
 
+    lateinit var fileContent: String
+
     protected fun setUpIteration() {
         tempDir = Files.createTempDirectory(directoryPrefix)
+        fileContent = "0".repeat(charactersPerFile)
     }
 
     protected fun tearDownIteration() {
