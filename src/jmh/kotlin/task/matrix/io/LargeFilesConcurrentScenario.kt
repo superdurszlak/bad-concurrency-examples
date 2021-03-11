@@ -10,8 +10,8 @@ open class LargeFilesConcurrentScenario: BaseFileWriteScenario() {
         override var charactersPerFile: Int = 1000000,
         @Param("1")
         override var filesPerSubtask: Int = 1,
-        @Param("1000")
-        override var fileBlockSize: Int = 1000,
+        @Param("1000", "1000000")
+        override var fileBlockSize: Int = 1000000,
         @Param("100")
         override var filesToWrite: Int = 100,
         @Param("1", "2", "3", "4", "8", "64", "512")

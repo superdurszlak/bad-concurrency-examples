@@ -10,7 +10,7 @@ open class LargeFilesSequentialScenario: BaseFileWriteScenario() {
         override var charactersPerFile: Int = 1000000,
         @Param("100")
         override var filesPerSubtask: Int = 100,
-        @Param("10000", "1000000")
+        @Param("1000", "1000000")
         override var fileBlockSize: Int = 1000000,
         @Param("100")
         override var filesToWrite: Int = 100,
